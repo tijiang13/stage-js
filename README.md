@@ -52,3 +52,10 @@ layouts and appendices. Both use the same runtime and matching local media.
 - [Presenting](docs/presenting.md): controls, shortcuts, notes, and presenter setup.
 - [Themes](docs/themes.md): styling responsibilities, theme tokens, and responsive layouts.
 - [Runtime](docs/runtime.md): project structure, component APIs, and playback policy.
+
+## License and credits
+
+Released under the [MIT License](LICENSE).
+
+Co-authored with OpenAI Codex, with design guidance from
+[Anthropic's Frontend Design Skill for Claude](https://github.com/anthropics/skills/tree/main/skills/frontend-design).
