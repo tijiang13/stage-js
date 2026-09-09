@@ -1,0 +1,18 @@
+/* Fixed 16:9 export rules; load after the slide theme. */
+@page {
+  size: 16in 9in;
+  margin: 0;
+}
+
+@media print {
+  html, body { width: 16in; height: auto; background: #fff; }
+  body { overflow: visible !important; }
+  .presentation-ui, .skip-link { display: none !important; }
+  .deck { width: 16in; height: auto; overflow: visible; scroll-snap-type: none; }
+  .slide-frame { display: block; width: 16in; height: 9in; overflow: hidden; break-after: page; page-break-after: always; }
+  .slide-frame:last-child { break-after: auto; page-break-after: auto; }
+  .slide { width: 16in !important; height: 9in !important; min-height: 9in !important; border-radius: 0 !important; box-shadow: none !important; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  video { display: none !important; }
+  .print-poster { display: block !important; }
+  a { color: inherit; }
+}

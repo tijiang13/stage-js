@@ -1,0 +1,57 @@
+/* Framework contract: canvas, visibility, modes, accessible controls. Themes load after this. */
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: system-ui, sans-serif; }
+button, input, select { font: inherit; }
+.deck { height: 100svh; overflow-x: hidden; overflow-y: auto; overscroll-behavior-y: contain; scroll-snap-type: y mandatory; scrollbar-width: none; }
+.deck::-webkit-scrollbar { display: none; }
+.slide-frame { display: grid; width: 100%; height: 100svh; overflow: hidden; place-items: center; scroll-snap-align: start; scroll-snap-stop: always; }
+.slide { position: relative; width: min(100vw, calc(100svh * 16 / 9)); height: min(100svh, calc(100vw * 9 / 16)); padding: var(--slide-padding, 3cqw); overflow: hidden; container: slide / size; isolation: isolate; color: #111; background: #fff; }
+.speaker-notes, .print-poster, .presentation-ui[hidden] { display: none !important; }
+.media-frame { position: relative; }
+.media-frame img, .media-frame video { max-width: 100%; }
+.skip-link { position: fixed; top: 10px; left: 10px; z-index: 1000; padding: 10px; color: #fff; background: var(--stage-accent, #333); transform: translateY(-160%); }
+.skip-link:focus { transform: translateY(0); }
+/* Minimal usable defaults. Colors and ornament can be replaced by a theme. */
+.presentation-ui { color: var(--stage-ui-ink, #eee); font-size: 14px; }
+.deck-controls { position: fixed; right: 20px; bottom: 20px; z-index: 100; display: flex; flex-wrap: wrap; max-width: calc(100vw - 40px); gap: 4px; padding: 6px; background: var(--stage-ui-bg, #222); border: 1px solid var(--stage-ui-line, #555); }
+.presentation-ui button { font: inherit; color: inherit; background: transparent; border: 1px solid var(--stage-ui-line, #555); padding: 8px; cursor: pointer; }
+.presentation-ui button:disabled { opacity: .35; cursor: default; }
+.presentation-ui button:focus-visible { outline: 2px solid var(--stage-accent, #aaa); outline-offset: 2px; }
+.deck-status { position: fixed; right: 20px; top: 18px; z-index: 90; display: flex; gap: 16px; background: var(--stage-ui-bg, #222); padding: 4px 8px; }
+.deck-progress { position: fixed; bottom: 0; left: 0; right: 0; z-index: 110; height: 3px; }
+.deck-progress span { display: block; height: 100%; background: var(--stage-accent, #777); }
+.overview-panel header { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+.overview-panel header span, .overview-panel header strong { display: block; }
+.overview-panel { position: fixed; inset: 0; z-index: 300; overflow: auto; padding: 28px; background: var(--stage-ui-bg, #222); }
+.overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.overview-card { position: relative; min-height: 140px; text-align: left; }
+.overview-card span, .overview-card strong, .overview-card small { display: block; }
+.overview-card.current { outline: 2px solid var(--stage-accent, #aaa); }
+.key-help { position: fixed; left: 50%; bottom: 80px; z-index: 400; transform: translateX(-50%); width: max-content; max-width: calc(100vw - 40px); padding: 16px; background: var(--stage-ui-bg, #222); }
+.key-help strong { margin-right: 12px; }
+/* Mode geometry stays in the runtime; themes may reflow slide content. */
+body.mode-read { overflow: auto; background: var(--stage-read-bg, #eee); }
+body.mode-read .deck { height: auto; overflow: visible; scroll-snap-type: none; }
+body.mode-read .slide-frame { height: auto; min-height: 0; padding: 38px 20px; overflow: visible; }
+body.mode-read .slide { width: min(1180px, calc(100vw - 40px)); height: auto; min-height: min(663.75px, calc((100vw - 40px) * 9 / 16)); }
+@media (max-width: 760px) { .deck-status { display: none; } .deck-controls { right: 10px; bottom: 10px; max-width: calc(100vw - 20px); } }
+@media (prefers-reduced-motion: reduce) { .deck { scroll-behavior: auto; } .presentation-ui *, .presentation-ui { transition: none !important; } }
+
+/* Native dialogs contain focus; presentation controls stay discoverable on touch. */
+.overview-panel:not([open]) { display: none !important; }
+.overview-panel { width: 100vw; max-width: none; height: 100svh; max-height: none; margin: 0; border: 0; }
+.overview-panel::backdrop { background: rgb(0 0 0 / .7); }
+@media (hover: hover) and (pointer: fine) {
+  body.mode-present .deck-controls { opacity: .25; transition: opacity 160ms ease; }
+  body.mode-present .deck-controls:hover, body.mode-present .deck-controls:focus-within { opacity: 1; }
+}
+body.mode-read .deck-controls { opacity: 1; }
+@media (hover: none), (pointer: coarse) { .deck-controls { opacity: 1; } }
+
+/* Audience-facing navigation and fullscreen state. */
+.overview-grid { align-content: start; }
+.overview-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+.overview-control, .fullscreen-control { display: inline-flex; align-items: center; justify-content: center; }
+.fullscreen-control .fullscreen-exit, .fullscreen-control[aria-pressed="true"] .fullscreen-enter { display: none; }
+.fullscreen-control[aria-pressed="true"] .fullscreen-exit { display: block; }

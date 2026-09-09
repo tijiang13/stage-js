@@ -1,0 +1,35 @@
+/* Shared visual treatment. Geometry and interaction belong to stage-js/. */
+.presentation-ui { font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif; }
+.deck-controls, .key-help, .stage-media-dialog {
+  border: 1px solid var(--stage-ui-line);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px #0003;
+}
+.presentation-ui button { border-radius: 7px; }
+.deck-controls > button { min-width: 40px; min-height: 40px; border-color: transparent; }
+.presentation-ui button:hover:not(:disabled), .presentation-ui button[aria-expanded="true"] {
+  background: var(--stage-ui-hover);
+}
+.deck-status { border-radius: 6px; color: var(--stage-ui-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.overview-panel header span { color: var(--stage-ui-muted); font-size: 12px; margin-bottom: 6px; }
+.overview-panel { padding: clamp(20px, 4vw, 64px); }
+.overview-panel > header { align-items: center; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--stage-ui-line); }
+.overview-panel > header strong { font-size: clamp(22px, 3vw, 36px); letter-spacing: -.035em; }
+.overview-panel .overview-card { padding: 24px; background: var(--stage-ui-surface); border-radius: 10px; }
+.overview-card span { color: var(--stage-ui-muted); font-size: 12px; margin-bottom: 28px; }
+.overview-card strong { font-size: 20px; line-height: 1.25; }
+.overview-card small { color: var(--stage-ui-muted); margin-top: 10px; font-size: 12px; }
+.overview-card.current span { color: var(--stage-accent); }
+.overview-card.appendix { border-style: dashed; }
+.key-help { font-size: 13px; line-height: 1.8; }
+.key-help span, .stage-media-caption { color: var(--stage-ui-muted); }
+.stage-media-expand { border-radius: 6px; min-height: 36px; }
+@media (pointer: coarse) {
+  .presentation-ui button, .stage-media-expand { min-height: 44px; min-width: 44px; }
+}
+
+.deck-controls > .fullscreen-control { border-left: 1px solid var(--stage-ui-line); border-radius: 0 7px 7px 0; margin-left: 4px; padding-left: 12px; padding-right: 12px; }
+.overview-footer { border-top: 1px solid var(--stage-ui-line); padding-top: 24px; }
+.overview-footer button { padding: 10px 16px; }
+
+.overview-footer > span { color: var(--stage-ui-muted); font-size: 13px; }

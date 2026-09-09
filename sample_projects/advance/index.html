@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="Reusable dual-mode HTML presentation template.">
+  <title>Stage.js · Advanced sample</title>
+  <link rel="stylesheet" href="../../stage-js/deck.css">
+  <link rel="stylesheet" href="../../stage-js/media-viewer.css">
+  <link rel="stylesheet" href="../../theme/advance.css">
+  <link rel="stylesheet" href="../../stage-js/print.css" media="print">
+</head>
+<body class="mode-present">
+  <a class="skip-link" href="#slide-01">Skip to slides</a>
+
+  <main class="deck" id="deck" aria-label="Advanced sample">
+    <section class="slide-frame" id="slide-01" data-title="Cover" data-section="Overview" data-source-slides="template">
+      <article class="slide slide-cover theme-dark">
+        <div class="cover-orbit" aria-hidden="true"></div>
+        <header class="slide-brand"><strong>PROJECT NAME</strong><span>UPDATE</span></header>
+        <div class="cover-grid">
+          <div class="cover-copy">
+            <p class="eyebrow">Presentation</p>
+            <h1>Your<br>title</h1>
+            <p class="cover-date">Date</p>
+            <p class="cover-lede">State the purpose of the presentation in one short sentence.</p>
+          </div>
+          <div class="status-stack" aria-label="Presentation outline">
+            <div class="status-line paper"><strong>01</strong><p>First topic or result.</p></div>
+            <div class="status-line model"><strong>02</strong><p>Second topic or supporting evidence.</p></div>
+            <div class="status-line robot"><strong>03</strong><p>Decision, action, or next step.</p></div>
+          </div>
+        </div>
+        <div class="metric-strip" aria-label="Key points">
+          <div><strong>One</strong><span>clear idea</span></div>
+          <div><strong>Three</strong><span>supporting points</span></div>
+          <div><strong>One</strong><span>next action</span></div>
+          <div><strong>16:9</strong><span>presentation canvas</span></div>
+        </div>
+        <aside class="speaker-notes">Introduce the subject, audience, and purpose.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="slide-02" data-title="Key message" data-section="Main" data-source-slides="template">
+      <article class="slide theme-light">
+        <header class="slide-head"><p class="slide-kicker">01 · Main point</p><p class="slide-number">02</p></header>
+        <div class="title-row">
+          <div><h2>Put one clear message<br>on each slide</h2><p class="slide-intro">Use the cards below for evidence, context, or the steps needed to support that message.</p></div>
+          <div class="headline-status"><strong>3</strong><span>supporting points</span></div>
+        </div>
+        <div class="priority-grid">
+          <article class="priority-card"><span>POINT · 01</span><h3>Evidence</h3><p>Replace this text with the strongest fact, example, or result.</p><footer>Add a source or implication</footer></article>
+          <article class="priority-card"><span>POINT · 02</span><h3>Context</h3><p>Explain only the background the audience needs to understand the result.</p><footer>Keep it concise</footer></article>
+          <article class="priority-card"><span>POINT · 03</span><h3>Action</h3><p>Finish with the decision or next step that follows from the evidence.</p><footer>Name an owner or deadline</footer></article>
+        </div>
+        <aside class="speaker-notes">Explain the headline first, then use the cards as support rather than reading them verbatim.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="slide-03" data-title="Image & video" data-section="Media" data-source-slides="template">
+      <article class="slide theme-light sample-media-slide">
+        <header class="slide-head"><p class="slide-kicker">02 · Media</p><p class="slide-number">03</p></header>
+        <div class="title-row"><div><h2>One scene. Still and in motion.</h2><p class="slide-intro">Local media, ready for the stage, presenter view and print.</p></div></div>
+        <div class="sample-media-grid">
+          <figure class="sample-media-card">
+            <div class="media-frame" data-media-zoom><img src="assets/motion-study.jpg" width="960" height="540" alt="Three colored dots arranged along concentric orbits on a dark grid."></div>
+            <figcaption><strong>01 / Still image</strong><span>The first frame, preserved as a local JPEG.</span></figcaption>
+          </figure>
+          <figure class="sample-media-card">
+            <div class="media-frame" data-media-zoom>
+              <video controls muted loop playsinline data-autoplay preload="metadata" poster="assets/motion-study.jpg" aria-label="Four-second animation of colored dots moving around three orbits">
+                <source src="assets/motion-study.mp4" type="video/mp4">
+                Your browser cannot play this video. <a href="assets/motion-study.mp4">Open the MP4</a>.
+              </video>
+              <img class="print-poster" src="assets/motion-study.jpg" width="960" height="540" alt="Still frame of the orbit animation for print.">
+            </div>
+            <figcaption><strong>02 / Moving image</strong><span>A four-second silent loop. Use the controls to pause or seek.</span></figcaption>
+          </figure>
+        </div>
+        <aside class="speaker-notes">Compare the still image with the moving version. Pause and seek using the video controls, then advance: playback should stop. In presenter view and PDF, the video becomes the same still image.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="slide-04" data-title="Dark theme" data-section="Themes" data-source-slides="sample">
+      <article class="slide theme-dark">
+        <header class="slide-head"><p class="slide-kicker cyan">03 · Themes</p><p class="slide-number">04</p></header>
+        <div class="split-layout">
+          <div class="split-copy"><p class="eyebrow">A change of atmosphere</p><h2>The same deck.<br>A darker canvas.</h2><p class="slide-intro">Light and dark slides can live together. This page uses the same navigation, notes and media behavior.</p></div>
+          <figure class="sample-media-card"><div class="media-frame" data-media-zoom><img src="assets/motion-study.jpg" width="960" height="540" alt="Colored dots on three concentric orbits."></div><figcaption><strong>Local image on a dark slide</strong><span>Compare with the light media slide just before this one.</span></figcaption></figure>
+        </div>
+        <aside class="speaker-notes">Compare the light media slide with this dark variation. Theme choices belong to theme/advance.css; playback behavior stays in Stage.js.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="slide-05" data-title="Decision" data-section="Close" data-source-slides="template">
+      <article class="slide theme-light decision-slide">
+        <header class="slide-head"><p class="slide-kicker">04 · Close</p><p class="slide-number">05</p></header>
+        <div class="decision-layout">
+          <div class="decision-title"><p class="eyebrow">Before we close</p><h2>End with<br>a decision</h2><p class="slide-intro">Make the requested response explicit.</p></div>
+          <ol class="decision-list">
+            <li><span>01</span><div><strong>Agree</strong><p>State the decision that needs alignment.</p></div></li>
+            <li><span>02</span><div><strong>Assign</strong><p>Name the owner of the next action.</p></div></li>
+            <li><span>03</span><div><strong>Schedule</strong><p>Set the next checkpoint or deadline.</p></div></li>
+          </ol>
+        </div>
+        <footer class="closing-footer"><strong>PROJECT NAME</strong><span>Press O to explore the appendices</span></footer>
+        <aside class="speaker-notes">Pause here and confirm the decision, owner, and next checkpoint.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="appendix-light" data-title="Light appendix" data-section="Appendix" data-appendix="true">
+      <article class="slide theme-light appendix-slide">
+        <header class="slide-head"><p class="slide-kicker">Appendix · Extra detail</p><p class="slide-number">A1</p></header>
+        <div class="appendix-layout"><div><p class="eyebrow">For questions</p><h2>Keep extra detail within reach.</h2><p class="slide-intro">The main sequence stops at the closing slide. Open this appendix from Overview or the presenter slide picker.</p></div><a class="detail-card" href="#slide-05"><span>Return to the discussion</span><strong>Back to the closing slide</strong><p>Internal slide links work alongside keyboard navigation.</p><b aria-hidden="true">↗</b></a></div>
+        <aside class="speaker-notes">This appendix is excluded from the main slide count. Next moves to A2; the card returns to the closing slide.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="appendix-dark" data-title="Dark appendix" data-section="Appendix" data-appendix="true">
+      <article class="slide theme-dark appendix-slide">
+        <header class="slide-head"><p class="slide-kicker cyan">Appendix · Media detail</p><p class="slide-number">A2</p></header>
+        <div class="split-layout"><div class="split-copy"><p class="eyebrow">On demand</p><h2>Play only when needed.</h2><p class="slide-intro">This video starts manually. Use the controls to play, pause or seek. Leaving the slide pauses playback.</p></div><figure class="sample-media-card"><div class="media-frame" data-media-zoom><video controls muted playsinline preload="metadata" poster="assets/motion-study.jpg" aria-label="Manually controlled orbit animation"><source src="assets/motion-study.mp4" type="video/mp4"></video><img class="print-poster" src="assets/motion-study.jpg" width="960" height="540" alt="Still frame of the orbit animation."></div><figcaption><strong>Manual video playback</strong><span>Presenter view and print use the poster image.</span></figcaption></figure></div>
+        <aside class="speaker-notes">Play this clip only if useful for the discussion. This is the final appendix, so Next is disabled.</aside>
+      </article>
+    </section>
+  </main>
+
+  <script src="../../stage-js/presenter.js"></script>
+  <script src="../../stage-js/controls.js"></script>
+  <script src="../../stage-js/media.js"></script>
+  <script src="../../stage-js/deck.js"></script>
+  <script src="../../stage-js/media-viewer.js"></script>
+</body>
+</html>

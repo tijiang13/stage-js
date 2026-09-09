@@ -1,0 +1,18 @@
+/* Optional component geometry with neutral, themeable defaults. */
+[data-media-zoom] { position: relative; }
+.stage-zoom-image { cursor: zoom-in; }
+.stage-media-expand { position: absolute; top: 10px; right: 10px; z-index: 3; padding: 6px 10px; border: 1px solid var(--stage-ui-line, #555); border-radius: 4px; color: var(--stage-ui-ink, #eee); background: var(--stage-ui-bg, #222); font: 12px system-ui; cursor: pointer; }
+.stage-media-expand:focus-visible { outline: 2px solid var(--stage-accent, #aaa); outline-offset: 2px; }
+.stage-media-dialog { width: min(1200px, 94vw); max-width: 94vw; max-height: 94svh; padding: 48px 16px 16px; border: 1px solid var(--stage-ui-line, #555); color: var(--stage-ui-ink, #eee); background: var(--stage-ui-bg, #222); overflow: auto; }
+.stage-media-dialog::backdrop { background: rgb(0 0 0 / .8); }
+.stage-media-close { position: absolute; top: 8px; right: 8px; }
+.stage-media-content { display: grid; place-items: center; }
+.stage-media-content > img, .stage-media-content > video { display: block; width: auto; height: auto; max-width: 100%; max-height: 72svh; object-fit: contain; }
+.stage-media-caption { margin: 12px 0 0; font-size: 14px; line-height: 1.5; }
+
+/* Pointer users see the affordance on demand; touch and keyboard keep it discoverable. */
+@media (hover: hover) and (pointer: fine) {
+  .stage-media-expand { opacity: 0; transition: opacity 160ms ease; }
+  [data-media-zoom]:hover .stage-media-expand, [data-media-zoom]:focus-within .stage-media-expand { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .stage-media-expand { transition: none; } }

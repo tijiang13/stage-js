@@ -1,0 +1,11 @@
+# Historical reference material stays local.
+/archive/
+
+# Local metadata and caches.
+.DS_Store
+__pycache__/
+*.py[cod]
+
+# Generated presentation exports.
+/output/
+/sample_projects/**/*.pdf

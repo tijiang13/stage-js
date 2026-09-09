@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2f0ea">
+  <meta name="description" content="A small, dependency-free HTML slide deck.">
+  <title>Minimal deck</title>
+  <link rel="stylesheet" href="../../stage-js/deck.css">
+  <link rel="stylesheet" href="../../stage-js/media-viewer.css">
+  <link rel="stylesheet" href="../../theme/basic.css">
+  <link rel="stylesheet" href="../../stage-js/print.css" media="print">
+</head>
+<body class="mode-present">
+  <a class="skip-link" href="#slide-1">Skip to slides</a>
+
+  <main class="deck" id="deck" aria-label="Minimal presentation">
+    <section class="slide-frame" id="slide-1" data-title="Cover" data-section="Main" data-source-slides="sample">
+      <article class="slide">
+      <header class="topline"><span class="mark">Studio</span><span>09 · 09 · 2026</span></header>
+      <div class="cover-copy">
+        <p class="kicker">Presentation</p>
+        <h1>Put one clear idea here.</h1>
+        <p class="lede">A minimal, editable starting point with no build step or network dependencies.</p>
+      </div>
+      <footer class="footer"><span>Your name</span><span>01</span></footer>
+      <aside class="speaker-notes">Introduce the subject, audience, and purpose.</aside>
+
+      </article>
+    </section>
+
+    <section class="slide-frame" id="slide-2" data-title="Key message" data-section="Main" data-source-slides="sample">
+      <article class="slide dark">
+      <header class="topline"><span class="mark">Key message</span><span>02</span></header>
+      <div class="statement">
+        <h2>Make the point impossible to miss.</h2>
+        <div class="support" aria-label="Supporting points">
+          <article><strong>01</strong><p>Replace this line with the first piece of evidence.</p></article>
+          <article><strong>02</strong><p>Use a second line only when it strengthens the point.</p></article>
+          <article><strong>03</strong><p>End with the decision or action the audience should take.</p></article>
+        </div>
+      </div>
+      <footer class="footer"><span>Presentation</span><span>02</span></footer>
+      <aside class="speaker-notes">Explain the main point, then support it with the evidence.</aside>
+
+      </article>
+    </section>
+
+    <section class="slide-frame" id="slide-3" data-title="Image & video" data-section="Main" data-source-slides="sample">
+      <article class="slide sample-media-slide">
+      <header class="topline"><span class="mark">Media</span><span>03</span></header>
+      <h2>One scene. Still and in motion.</h2>
+      <p class="sample-intro">Local media, ready for the stage, presenter view and print.</p>
+      <div class="sample-media-grid">
+          <figure class="sample-media-card">
+            <div class="media-frame" data-media-zoom><img src="assets/motion-study.jpg" width="960" height="540" alt="Three colored dots arranged along concentric orbits on a dark grid."></div>
+            <figcaption><strong>01 / Still image</strong><span>The first frame, preserved as a local JPEG.</span></figcaption>
+          </figure>
+          <figure class="sample-media-card">
+            <div class="media-frame" data-media-zoom>
+              <video controls muted loop playsinline data-autoplay preload="metadata" poster="assets/motion-study.jpg" aria-label="Four-second animation of colored dots moving around three orbits">
+                <source src="assets/motion-study.mp4" type="video/mp4">
+                Your browser cannot play this video. <a href="assets/motion-study.mp4">Open the MP4</a>.
+              </video>
+              <img class="print-poster" src="assets/motion-study.jpg" width="960" height="540" alt="Still frame of the orbit animation for print.">
+            </div>
+            <figcaption><strong>02 / Moving image</strong><span>A four-second silent loop. Use the controls to pause or seek.</span></figcaption>
+          </figure>
+        </div>
+      <aside class="speaker-notes">Compare the still image with the moving version. Pause and seek using the video controls, then advance: playback should stop. In presenter view and PDF, the video becomes the same still image.</aside>
+      <footer class="footer"><span>Image / Video</span><span>03</span></footer>
+
+      </article>
+    </section>
+
+    <section class="slide-frame" id="slide-4" data-title="Close" data-section="Main" data-source-slides="sample">
+      <article class="slide">
+      <header class="topline"><span class="mark">Close</span><span>04</span></header>
+      <div class="closing">
+        <p class="kicker">End</p>
+        <h2>Thank you.</h2>
+        <p>name@example.com</p>
+      </div>
+      <footer class="footer"><span>Questions</span><span>04</span></footer>
+      <aside class="speaker-notes">Invite questions and confirm the next step.</aside>
+
+      </article>
+    </section>
+  </main>
+
+  <script src="../../stage-js/presenter.js"></script>
+  <script src="../../stage-js/controls.js"></script>
+  <script src="../../stage-js/media.js"></script>
+  <script src="../../stage-js/deck.js"></script>
+  <script src="../../stage-js/media-viewer.js"></script>
+</body>
+</html>
