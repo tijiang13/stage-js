@@ -9,3 +9,6 @@ __pycache__/
 # Generated presentation exports.
 /output/
 /sample_projects/**/*.pdf
+
+# GitHub Pages build output.
+/_site/

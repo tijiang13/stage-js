@@ -15,6 +15,8 @@ editor. Stage.js uses HTML, CSS, and JavaScript directly: content, design, and
 behavior are inspectable and editable without a specialized presentation editor.
 This makes the deck a natural part of an agent-assisted coding workflow.
 
+[Explore the live samples](https://tijiang13.github.io/stage-js/).
+
 ## Get started
 
 Open the [basic sample](sample_projects/basic/index.html) in a browser, or serve
