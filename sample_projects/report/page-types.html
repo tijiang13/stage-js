@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1424">
+  <meta name="description" content="Page types for business reports: cover, highlights, evidence, media, tables, status, timeline, options and asks.">
+  <title>Stage.js · Report page types</title>
+  <link rel="stylesheet" href="../../stage-js/deck.css">
+  <link rel="stylesheet" href="../../stage-js/media-player.css">
+  <link rel="stylesheet" href="../../stage-js/media-viewer.css">
+  <link rel="stylesheet" href="../../theme/report.css">
+  <link rel="stylesheet" href="../../stage-js/print.css" media="print">
+</head>
+<body class="mode-present">
+  <a class="skip-link" href="#cover">Skip to slides</a>
+
+  <main class="deck" id="deck" aria-label="Report page types">
+    <section class="slide-frame" id="cover" data-title="Cover" data-section="Open" data-source-slides="sample">
+      <article class="slide cover dark">
+        <header class="slide-head"><span class="brand">Team or project</span><span>Reporting period</span></header>
+        <div class="slide-body"><h1>State the shared purpose or the main result</h1></div>
+        <footer class="slide-foot"><span>Report or meeting</span><span>01</span></footer>
+        <aside class="speaker-notes">Open with the purpose and the audience's reason to care. Keep the visible cover minimal; add a status chip or metadata only when the meeting needs it.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="highlights" data-title="Highlights" data-section="Results" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head"><span class="brand">Team or project · Report name</span><span>Reporting period</span></header>
+        <div class="slide-title"><p class="kicker">Highlights</p><h2>Lead with the few figures that changed, each against a comparison</h2></div>
+        <div class="slide-body">
+          <div class="kpis">
+            <div class="kpi"><span>Measure that improved</span><strong>42.8%</strong><span class="delta good">▲ change vs last period</span></div>
+            <div class="kpi"><span>Measure that got worse</span><strong>31 s</strong><span class="delta poor">▲ change vs target</span></div>
+            <div class="kpi"><span>Measure with no judgement</span><strong>12 / 14</strong><span class="delta">Last period: 9 / 14</span></div>
+          </div>
+          <div class="cols">
+            <article class="card"><p class="label">Who or which area</p><p><strong>What was achieved.</strong> One sentence on how you know.</p></article>
+            <article class="card"><p class="label">Who or which area</p><p><strong>What was achieved.</strong> One sentence on how you know.</p></article>
+            <article class="card"><p class="label">Who or which area</p><p><strong>What was achieved.</strong> One sentence on how you know.</p></article>
+          </div>
+        </div>
+        <footer class="slide-foot"><span>Source of the figures and the date they were read</span><span>02</span></footer>
+        <aside class="speaker-notes">Highlights page: three or four figure tiles, optionally with a row of cards that say who did what. Every figure carries its comparison. Mark a change as good or poor by its effect, not its direction.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="evidence" data-title="Evidence" data-section="Results" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head"><span class="brand">Team or project · Report name</span><span>Reporting period</span></header>
+        <div class="slide-title"><p class="kicker">Evidence</p><h2>State the finding the chart proves, then show the chart</h2></div>
+        <div class="slide-body center">
+          <div class="split">
+            <div>
+              <ul class="points">
+                <li><strong>The main reading:</strong> the before and after, with the sample size.</li>
+                <li><strong>A second reading</strong> that supports or qualifies it.</li>
+                <li>What is still unknown or comes next.</li>
+              </ul>
+              <p class="callout"><strong>So what</strong>One sentence on what this result makes possible.</p>
+            </div>
+            <figure>
+              <p class="label" style="margin-bottom: calc(var(--u) * 1.1)">What is measured, in which unit, for which period</p>
+              <div class="bars">
+                <div class="bar bad"><span>Category to worry about</span><i style="--v: 100%"></i><b>11.8%</b></div>
+                <div class="bar hl"><span>Category in focus</span><i style="--v: 81%"></i><b>9.6%</b></div>
+                <div class="bar"><span>Comparison category</span><i style="--v: 44%"></i><b>5.2%</b></div>
+                <div class="bar ok"><span>Category that is fine</span><i style="--v: 31%"></i><b>3.7%</b></div>
+              </div>
+              <p class="source" style="margin-top: calc(var(--u) * 1.1)">How the bars are scaled, and the source.</p>
+            </figure>
+          </div>
+        </div>
+        <footer class="slide-foot"><span>Definition of the population or cohort</span><span>03</span></footer>
+        <aside class="speaker-notes">Evidence page: one finding, one chart. Bars suit up to six values; set each length with --v as a percentage of the longest bar. Use a chart image for anything more complex.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="media" data-title="Image or video" data-section="Results" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head"><span class="brand">Team or project · Report name</span><span>Reporting period</span></header>
+        <div class="slide-title"><p class="kicker">Show it</p><h2>Name what the audience is about to see</h2></div>
+        <div class="slide-body center">
+          <div class="split media-wide">
+            <figure class="media-card">
+              <div class="media-frame"><img src="assets/media-placeholder.svg" width="1600" height="900" alt="Placeholder for a screenshot, chart image or recording"></div>
+              <figcaption>Caption: what this is, which version, when it was captured.</figcaption>
+            </figure>
+            <div>
+              <ul class="points">
+                <li><strong>First thing to look at</strong>, and why it matters.</li>
+                <li><strong>Second thing to look at.</strong></li>
+                <li><strong>What is different</strong> from the previous version.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-foot"><span>Where the audience can try it themselves</span><span>04</span></footer>
+        <aside class="speaker-notes">Image or video page: the real thing, large, with two or three pointers on what to look at. Replace the placeholder with a screenshot, a chart image or a short recording.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="list" data-title="List table" data-section="Results" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head"><span class="brand">Team or project · Report name</span><span>Reporting period</span></header>
+        <div class="slide-title"><p class="kicker">List</p><h2>Summarise the list in a sentence: how many, and what they add up to</h2></div>
+        <div class="slide-body">
+          <table class="rtable">
+            <thead><tr><th style="width:30%">Item</th><th style="width:12%">Who</th><th style="width:22%">Where it stands</th><th>What it changed</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Name of the item</strong></td><td>Owner</td><td>Live, merged, shared…</td><td>The observable effect, with figures where they exist.</td></tr>
+              <tr><td><strong>Name of the item</strong></td><td>Owner</td><td>Live, merged, shared…</td><td>The observable effect, with figures where they exist.</td></tr>
+              <tr><td><strong>Name of the item</strong></td><td>Owner</td><td>Live, merged, shared…</td><td>The observable effect, with figures where they exist.</td></tr>
+              <tr><td><strong>Name of the item</strong></td><td>Owner</td><td>Live, merged, shared…</td><td>The observable effect, with figures where they exist.</td></tr>
+            </tbody>
+          </table>
+          <p class="callout"><strong>Note</strong>An optional line for what the table leaves out, such as items carried over.</p>
+        </div>
+        <footer class="slide-foot"><span>Definition or source for the list</span><span>05</span></footer>
+        <aside class="speaker-notes">List table page: one row per item, up to six rows. Rename the columns to fit: commitments with owner and due date, experiments with result, priorities with key result.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="scorecard" data-title="Scorecard" data-section="Status" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head"><span class="brand">Team or project · Report name</span><span>Reporting period</span></header>
+        <div class="slide-title"><p class="kicker">Scorecard</p><h2>Say how many targets were met, and name the one that was not</h2></div>
+        <div class="slide-body">
+          <table class="rtable">
+            <thead><tr><th style="width:32%">Goal or measure</th><th class="r" style="width:13%">Baseline</th><th class="r" style="width:13%">Target</th><th class="r" style="width:13%">Actual</th><th style="width:14%">Result</th><th>Comment</th></tr></thead>
+            <tbody>
+              <tr><td><strong>A goal that was met</strong></td><td class="r dim">39.4%</td><td class="r">42.0%</td><td class="r"><strong>42.8%</strong></td><td><span class="chip ok">Achieved</span></td><td>What drove it.</td></tr>
+              <tr><td><strong>A goal that is close</strong></td><td class="r dim">96 s</td><td class="r">70 s</td><td class="r"><strong>74 s</strong></td><td><span class="chip warn">Partly</span></td><td>What is still missing.</td></tr>
+              <tr><td><strong>A goal that was missed</strong></td><td class="r dim">99.93%</td><td class="r">99.95%</td><td class="r"><strong>99.82%</strong></td><td><span class="chip bad">Missed</span></td><td>The cause, in a few words.</td></tr>
+              <tr><td><strong>A goal not yet measured</strong></td><td class="r dim">610 ms</td><td class="r">400 ms</td><td class="r"><strong>—</strong></td><td><span class="chip">Not measured</span></td><td>When it will be.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <footer class="slide-foot"><span>Define the result words here, for example: Achieved = target met</span><span>06</span></footer>
+        <aside class="speaker-notes">Scorecard page: goals or measures against target, with a status chip per row. Always write the status word; colour only supports it.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="health" data-title="Status cards" data-section="Status" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head"><span class="brand">Team or project · Report name</span><span>Reporting period</span></header>
+        <div class="slide-title"><p class="kicker">Status by dimension</p><h2>Give the overall picture: what is on track and what is not</h2></div>
+        <div class="slide-body">
+          <div class="cols">
+            <article class="card ok"><span class="chip ok">On track</span><h3>Dimension</h3><p>The one fact that justifies this status.</p><footer>Last time: On track</footer></article>
+            <article class="card warn"><span class="chip warn">At risk</span><h3>Dimension</h3><p>The one fact that justifies this status.</p><footer>Last time: On track</footer></article>
+            <article class="card bad"><span class="chip bad">Off track</span><h3>Dimension</h3><p>The one fact that justifies this status.</p><footer>Last time: At risk</footer></article>
+            <article class="card"><span class="chip">Not started</span><h3>Dimension</h3><p>The one fact that justifies this status.</p><footer>Last time: Not started</footer></article>
+          </div>
+          <p class="callout"><strong>Overall</strong>What would have to happen for the overall status to change.</p>
+        </div>
+        <footer class="slide-foot"><span>Define the status words here</span><span>07</span></footer>
+        <aside class="speaker-notes">Status cards page: two to four dimensions such as scope, schedule, budget and quality, each with a chip, one fact and the previous status.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="cards" data-title="Cards" data-section="Explain" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head"><span class="brand">Team or project · Report name</span><span>Reporting period</span></header>
+        <div class="slide-title"><p class="kicker">Cards</p><h2>Use two to four cards for parallel ideas of equal weight</h2></div>
+        <div class="slide-body">
+          <div class="cols">
+            <article class="card"><p class="label">First idea</p><h3>A short heading that makes a point</h3><p>Two lines of support at most.</p></article>
+            <article class="card"><p class="label">Second idea</p><ul class="points"><li><strong>Lead phrase</strong> and the rest of the line.</li><li><strong>Lead phrase</strong> and the rest of the line.</li></ul></article>
+            <article class="card plain"><p class="label">Third idea</p><p>A plain card has no coloured edge. Cards also come in ok, warn and bad.</p></article>
+          </div>
+          <p class="callout"><strong>Takeaway</strong>An optional sentence that ties the cards together.</p>
+        </div>
+        <footer class="slide-foot"><span>Source or assumption</span><span>08</span></footer>
+        <aside class="speaker-notes">Cards page: for wins, misses and lessons; for benefit, cost and risk; for problem and why now. Keep the cards parallel in form.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="timeline" data-title="Timeline" data-section="Plan" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head"><span class="brand">Team or project · Report name</span><span>Reporting period</span></header>
+        <div class="slide-title"><p class="kicker">Timeline</p><h2>Say where things stand on the path, and what moved</h2></div>
+        <div class="slide-body spread">
+          <ol class="timeline">
+            <li class="done"><time>Date</time><strong>Milestone done</strong><span>On time</span></li>
+            <li class="done"><time>Date</time><strong>Milestone done</strong><span>Two days early</span></li>
+            <li class="late"><time>Date</time><strong>Milestone late</strong><span>Was: earlier date</span></li>
+            <li class="now"><time>Date · now</time><strong>Current milestone</strong><span>What it needs</span></li>
+            <li><time>Date</time><strong>Future milestone</strong><span>Short note</span></li>
+          </ol>
+          <figure>
+            <p class="label" style="margin-bottom: calc(var(--u) * 1)">Optional: progress by area</p>
+            <div class="bars">
+              <div class="bar ok"><span>Area complete</span><i style="--v: 100%"></i><b>5 / 5</b></div>
+              <div class="bar hl"><span>Area in progress</span><i style="--v: 67%"></i><b>2 / 3</b></div>
+              <div class="bar hl"><span>Area in progress</span><i style="--v: 50%"></i><b>1 / 2</b></div>
+            </div>
+          </figure>
+        </div>
+        <footer class="slide-foot"><span>Last period's values, or fixed dates that constrain the plan</span><span>09</span></footer>
+        <aside class="speaker-notes">Timeline page: four to six milestones marked done, now or late. The bars underneath are optional and show progress as distance covered.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="options" data-title="Options" data-section="Decide" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head"><span class="brand">Team or project · Report name</span><span>Reporting period</span></header>
+        <div class="slide-title"><p class="kicker">Options</p><h2>Name the option you recommend and the reason in one sentence</h2></div>
+        <div class="slide-body">
+          <table class="rtable">
+            <thead><tr><th style="width:27%">Option</th><th class="r" style="width:15%">Benefit</th><th class="r" style="width:11%">Cost</th><th class="r" style="width:11%">Time</th><th style="width:13%">Risk</th><th>Trade-off</th></tr></thead>
+            <tbody>
+              <tr><td><strong>A. Do nothing</strong></td><td class="r">None</td><td class="r">0</td><td class="r">—</td><td><span class="chip ok">Low</span></td><td>What stays unsolved.</td></tr>
+              <tr><td><strong>B. Smaller option</strong></td><td class="r">Some</td><td class="r">Low</td><td class="r">Weeks</td><td><span class="chip ok">Low</span></td><td>What it leaves out.</td></tr>
+              <tr class="pick"><td><strong>C. Recommended option</strong><small>Recommended</small></td><td class="r"><strong>Most</strong></td><td class="r">Medium</td><td class="r">Months</td><td><span class="chip warn">Medium</span></td><td>What you give up by choosing it.</td></tr>
+              <tr><td><strong>D. Larger option</strong></td><td class="r">Most</td><td class="r">High</td><td class="r">Quarters</td><td><span class="chip bad">High</span></td><td>Why it is not worth the extra.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <footer class="slide-foot"><span>Where the estimates come from</span><span>10</span></footer>
+        <aside class="speaker-notes">Options page: compare three or four options on the same criteria, including doing nothing. The pick class highlights the recommended row.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="numbers" data-title="Numbers table" data-section="Explain" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head"><span class="brand">Team or project · Report name</span><span>Reporting period</span></header>
+        <div class="slide-title"><p class="kicker">Numbers</p><h2>State the bottom line: the total and how it compares with plan</h2></div>
+        <div class="slide-body">
+          <div class="cols wide-left">
+            <table class="rtable">
+              <thead><tr><th>Line</th><th class="r">Plan</th><th class="r">Actual</th><th class="r">Forecast</th><th class="r">Variance</th></tr></thead>
+              <tbody>
+                <tr><td><strong>First line</strong></td><td class="r">380</td><td class="r">291</td><td class="r">384</td><td class="r">+4</td></tr>
+                <tr><td><strong>Second line</strong></td><td class="r">90</td><td class="r">78</td><td class="r">82</td><td class="r">−8</td></tr>
+                <tr><td><strong>Third line</strong></td><td class="r">60</td><td class="r">31</td><td class="r">54</td><td class="r">−6</td></tr>
+                <tr class="total"><td>Total</td><td class="r">530</td><td class="r">400</td><td class="r">520</td><td class="r">−10</td></tr>
+              </tbody>
+            </table>
+            <div class="kpis" style="grid-auto-flow: row">
+              <div class="kpi"><span>Headline ratio</span><strong>75%</strong><small>what it is a share of</small></div>
+              <div class="kpi"><span>Remaining</span><strong>130</strong><small>and what it is reserved for</small></div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-foot"><span>Unit, source, and the assumption behind the forecast</span><span>11</span></footer>
+        <aside class="speaker-notes">Numbers page: a right-aligned table with a total row, beside one or two figures that summarise it. For budgets, headcount and capacity.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="risks" data-title="Risks" data-section="Status" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head"><span class="brand">Team or project · Report name</span><span>Reporting period</span></header>
+        <div class="slide-title"><p class="kicker">Risks and issues</p><h2>Name the risk that matters most and what it would cost</h2></div>
+        <div class="slide-body">
+          <table class="rtable">
+            <thead><tr><th style="width:12%">Level</th><th style="width:27%">Risk or issue</th><th style="width:24%">Impact if nothing changes</th><th>What is being done</th><th style="width:11%">Owner</th></tr></thead>
+            <tbody>
+              <tr><td><span class="chip bad">High</span></td><td><strong>The risk, as a plain statement</strong></td><td>The consequence, with a date or an amount.</td><td>The next step and when it happens.</td><td>Name</td></tr>
+              <tr><td><span class="chip warn">Medium</span></td><td><strong>The risk, as a plain statement</strong></td><td>The consequence, with a date or an amount.</td><td>The next step and when it happens.</td><td>Name</td></tr>
+              <tr><td><span class="chip">Low</span></td><td><strong>The risk, as a plain statement</strong></td><td>The consequence, with a date or an amount.</td><td>The next step and when it happens.</td><td>Name</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <footer class="slide-foot"><span>Define the levels here</span><span>12</span></footer>
+        <aside class="speaker-notes">Risks page: three rows at most, each with impact, next step and owner. In a results-focused report, keep this page in the appendix.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="asks" data-title="Asks" data-section="Decide" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head"><span class="brand">Team or project · Report name</span><span>Reporting period</span></header>
+        <div class="slide-title"><p class="kicker">Asks and decisions</p><h2>Say how many things you need, and from whom</h2></div>
+        <div class="slide-body">
+          <ol class="asks">
+            <li><div><strong>Start with a verb: approve, decide, confirm, fund</strong><p>Why it is needed, and what happens without it.</p></div><span class="meta"><b>Who decides</b>By when</span></li>
+            <li><div><strong>Give your recommendation inside the ask</strong><p>What it costs and what it protects.</p></div><span class="meta"><b>Who decides</b>By when</span></li>
+            <li><div><strong>Keep to three asks at most</strong><p>More than three means the report needs a separate meeting.</p></div><span class="meta"><b>Who decides</b>By when</span></li>
+          </ol>
+        </div>
+        <footer class="slide-foot"><span>What happens next, or the date of the next report</span><span>13</span></footer>
+        <aside class="speaker-notes">Asks page: numbered requests, each naming who decides and by when. Usually the last main page.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="comparison" data-title="Keep baseline and result comparable" data-section="Evidence patterns" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head">
+          <span class="brand">Evidence composition</span>
+          <span>Authoring example</span>
+        </header>
+        <div class="slide-title">
+          <h2>Keep baseline and result comparable</h2>
+        </div>
+        <div class="slide-body center">
+          <div class="evidence-preview compact" data-media-examples>
+            <p class="evidence-context">Both panes use the same synthetic recording; this is a player demonstration.</p>
+            <div class="media-example-picker presentation-ui" role="group" aria-label="Choose comparable example">
+              <button type="button" data-media-select="first" aria-pressed="true">
+                <img src="assets/motion-study.jpg" alt="">
+                First example
+              </button>
+              <button type="button" data-media-select="second" aria-pressed="false">Second example</button>
+            </div>
+            <div data-media-example="first">
+              <div class="comparison" data-media-player data-media-zoom="group" data-media-click-expand>
+                <figure class="media-card">
+                  <figcaption>Baseline · first</figcaption>
+                  <div class="media-frame">
+                    <video muted loop playsinline data-autoplay preload="metadata" poster="assets/motion-study.jpg" aria-label="Synthetic motion-study playback fixture">
+                      <source src="assets/motion-study.mp4" type="video/mp4">
+                    </video>
+                    <img class="print-poster" src="assets/motion-study.jpg" alt="Synthetic motion-study poster">
+                  </div>
+                </figure>
+                <figure class="media-card">
+                  <figcaption>Result · first</figcaption>
+                  <div class="media-frame">
+                    <video muted loop playsinline data-autoplay preload="metadata" poster="assets/motion-study.jpg" aria-label="Synthetic motion-study playback fixture">
+                      <source src="assets/motion-study.mp4" type="video/mp4">
+                    </video>
+                    <img class="print-poster" src="assets/motion-study.jpg" alt="Synthetic motion-study poster">
+                  </div>
+                </figure>
+              </div>
+            </div>
+            <div data-media-example="second" hidden>
+              <div class="comparison" data-media-player data-media-zoom="group" data-media-click-expand>
+                <figure class="media-card">
+                  <figcaption>Baseline · second</figcaption>
+                  <div class="media-frame">
+                    <video muted loop playsinline data-autoplay preload="metadata" poster="assets/motion-study.jpg" aria-label="Synthetic motion-study playback fixture">
+                      <source src="assets/motion-study.mp4" type="video/mp4">
+                    </video>
+                    <img class="print-poster" src="assets/motion-study.jpg" alt="Synthetic motion-study poster">
+                  </div>
+                </figure>
+                <figure class="media-card">
+                  <figcaption>Result · second</figcaption>
+                  <div class="media-frame">
+                    <video muted loop playsinline data-autoplay preload="metadata" poster="assets/motion-study.jpg" aria-label="Synthetic motion-study playback fixture">
+                      <source src="assets/motion-study.mp4" type="video/mp4">
+                    </video>
+                    <img class="print-poster" src="assets/motion-study.jpg" alt="Synthetic motion-study poster">
+                  </div>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-foot">
+          <span>Synthetic fixtures demonstrate layout and controls</span>
+          <span>14</span>
+        </footer>
+        <aside class="speaker-notes">Select aligned inputs and intervals before sharing the transport. Keep baseline/result labels visible in the enlarged group; switching examples changes the take, not the meaning of the two panes. These identical synthetic clips demonstrate controls rather than measured improvement.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="workflow" data-title="Connect the evidence to the overall idea" data-section="Evidence patterns" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head">
+          <span class="brand">Evidence composition</span>
+          <span>Authoring example</span>
+        </header>
+        <div class="slide-title">
+          <h2>Connect the evidence to the overall idea</h2>
+        </div>
+        <div class="slide-body center">
+          <div class="evidence-layout">
+            <div class="evidence-preview">
+              <p class="evidence-label">Show the source beside the idea</p>
+              <div data-media-player data-media-zoom data-media-click-expand>
+                <figure class="media-card">
+                  <figcaption>Synthetic recording</figcaption>
+                  <div class="media-frame">
+                    <video muted loop playsinline data-autoplay preload="metadata" poster="assets/motion-study.jpg" aria-label="Synthetic motion-study playback fixture">
+                      <source src="assets/motion-study.mp4" type="video/mp4">
+                    </video>
+                    <img class="print-poster" src="assets/motion-study.jpg" alt="Synthetic motion-study poster">
+                  </div>
+                </figure>
+              </div>
+              <p class="evidence-context">A compact preview can expand without replacing the workflow.</p>
+            </div>
+            <figure class="media-card evidence-diagram">
+              <div class="media-frame" data-media-zoom>
+                <img src="assets/review-flow.svg" alt="Recorded samples enter screening, people confirm or restore findings, and reviewed results are exported. Feedback informs screening.">
+              </div>
+              <figcaption class="evidence-summary">Recorded samples enter screening. People confirm or restore findings and export reviewed results; their feedback informs screening.</figcaption>
+            </figure>
+          </div>
+        </div>
+        <footer class="slide-foot">
+          <span>Synthetic fixtures demonstrate layout and controls</span>
+          <span>15</span>
+        </footer>
+        <aside class="speaker-notes">Show what enters the system, its essential decisions and what comes out. The recording is compact so the workflow remains legible, and either can be enlarged. Replace this explanatory diagram with the process relevant to the audience.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="journey" data-title="Show how someone reaches the result" data-section="Evidence patterns" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head">
+          <span class="brand">Evidence composition</span>
+          <span>Authoring example</span>
+        </header>
+        <div class="slide-title">
+          <h2>Show how someone reaches the result</h2>
+        </div>
+        <div class="slide-body center">
+          <div class="evidence-journey">
+            <figure class="media-card natural">
+              <figcaption>Supply the input</figcaption>
+              <div class="media-frame" data-media-zoom>
+                <img src="assets/media-placeholder.svg" alt="Replace with the actual product screenshot for this step">
+              </div>
+            </figure>
+            <span class="evidence-arrow" aria-hidden="true">→</span>
+            <figure class="media-card natural">
+              <figcaption>Inspect a finding</figcaption>
+              <div class="media-frame" data-media-zoom>
+                <img src="assets/media-placeholder.svg" alt="Replace with the actual product screenshot for this step">
+              </div>
+            </figure>
+            <span class="evidence-arrow" aria-hidden="true">→</span>
+            <figure class="media-card natural">
+              <figcaption>Review the output</figcaption>
+              <div class="media-frame" data-media-zoom>
+                <img src="assets/media-placeholder.svg" alt="Replace with the actual product screenshot for this step">
+              </div>
+            </figure>
+          </div>
+          <p class="evidence-context">Replace each frame with its actual UI step; keep the relationship visible.</p>
+        </div>
+        <footer class="slide-foot">
+          <span>Synthetic fixtures demonstrate layout and controls</span>
+          <span>16</span>
+        </footer>
+        <aside class="speaker-notes">Use actual UI captures for the input, inspection and output steps. This illustrates product use; separate evidence establishes detection ability or measured accuracy. Replace these explicit placeholder frames before presenting.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="findings" data-title="Keep distinct findings visible together" data-section="Evidence patterns" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head">
+          <span class="brand">Evidence composition</span>
+          <span>Authoring example</span>
+        </header>
+        <div class="slide-title">
+          <h2>Keep distinct findings visible together</h2>
+        </div>
+        <div class="slide-body center">
+          <div class="findings-grid">
+            <div class="finding">
+              <h3>First failure pattern</h3>
+              <div data-media-player data-media-zoom data-media-click-expand>
+                <figure class="media-card">
+                  <figcaption>Synthetic playback fixture</figcaption>
+                  <div class="media-frame">
+                    <video muted loop playsinline data-autoplay preload="metadata" poster="assets/motion-study.jpg" aria-label="Synthetic motion-study playback fixture">
+                      <source src="assets/motion-study.mp4" type="video/mp4">
+                    </video>
+                    <img class="print-poster" src="assets/motion-study.jpg" alt="Synthetic motion-study poster">
+                  </div>
+                </figure>
+              </div>
+              <p class="evidence-context">Replace with source-bound normal, event and recovery context.</p>
+            </div>
+            <div class="finding">
+              <h3>A different failure pattern</h3>
+              <div data-media-player data-media-zoom data-media-click-expand>
+                <figure class="media-card">
+                  <figcaption>Synthetic playback fixture</figcaption>
+                  <div class="media-frame">
+                    <video muted loop playsinline data-autoplay preload="metadata" poster="assets/motion-study.jpg" aria-label="Synthetic motion-study playback fixture">
+                      <source src="assets/motion-study.mp4" type="video/mp4">
+                    </video>
+                    <img class="print-poster" src="assets/motion-study.jpg" alt="Synthetic motion-study poster">
+                  </div>
+                </figure>
+              </div>
+              <p class="evidence-context">Replace with source-bound normal, event and recovery context.</p>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-foot">
+          <span>Synthetic fixtures demonstrate layout and controls</span>
+          <span>17</span>
+        </footer>
+        <aside class="speaker-notes">Use different source-bound examples to establish distinct patterns. Playback can be controlled independently and each clip can enlarge. These recordings are synthetic fixtures, not evidence of real defects.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="outcomes" data-title="Pair the recording with its measured outcome" data-section="Evidence patterns" data-source-slides="sample">
+      <article class="slide">
+        <header class="slide-head">
+          <span class="brand">Evidence composition</span>
+          <span>Authoring example</span>
+        </header>
+        <div class="slide-title">
+          <h2>Pair the recording with its measured outcome</h2>
+        </div>
+        <div class="slide-body center">
+          <div class="evidence-layout">
+            <div class="evidence-preview">
+              <div data-media-player data-media-zoom data-media-click-expand>
+                <figure class="media-card">
+                  <figcaption>Recording for this case</figcaption>
+                  <div class="media-frame">
+                    <video muted loop playsinline data-autoplay preload="metadata" poster="assets/motion-study.jpg" aria-label="Synthetic motion-study playback fixture">
+                      <source src="assets/motion-study.mp4" type="video/mp4">
+                    </video>
+                    <img class="print-poster" src="assets/motion-study.jpg" alt="Synthetic motion-study poster">
+                  </div>
+                </figure>
+              </div>
+            </div>
+            <div class="evidence-explanation">
+              <h3>Show what was measured</h3>
+              <table class="rtable">
+                <thead>
+                  <tr>
+                    <th>Criterion</th>
+                    <th>Recorded outcome</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>First task requirement</td>
+                    <td>Use the actual verdict</td>
+                  </tr>
+                  <tr>
+                    <td>Second task requirement</td>
+                    <td>Use its matching record</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="evidence-context">Separate execution completion from task success. Say whether criteria describe the final state.</p>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-foot">
+          <span>Synthetic fixtures demonstrate layout and controls</span>
+          <span>18</span>
+        </footer>
+        <aside class="speaker-notes">Use the same case identity for the recording, criteria and result record. Execution success and task success answer different questions. Replace these instructional cells with real outcomes and put qualifications in these notes.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="appendix" data-title="Appendix" data-section="Appendix" data-appendix="true">
+      <article class="slide">
+        <header class="slide-head"><span class="brand">Team or project · Report name</span><span>Appendix</span></header>
+        <div class="slide-title"><p class="kicker">Appendix · Detail</p><h2>Keep supporting detail here, out of the main sequence</h2></div>
+        <div class="slide-body">
+          <table class="rtable">
+            <thead><tr><th style="width:30%">Source or item</th><th class="r" style="width:16%">Value</th><th>Note</th></tr></thead>
+            <tbody>
+              <tr><td><strong>First source</strong></td><td class="r">+2.6</td><td>How comparable or reliable it is.</td></tr>
+              <tr><td><strong>Second source</strong></td><td class="r">+4.1</td><td>How comparable or reliable it is.</td></tr>
+              <tr><td><strong>Third source</strong></td><td class="r">+3.3</td><td>How comparable or reliable it is.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <footer class="slide-foot"><span>Open from Overview when a question comes up</span><span>A1</span></footer>
+        <aside class="speaker-notes">Appendix page: any page type can be an appendix. Add data-appendix to the frame and it leaves the main sequence but stays reachable from Overview and the presenter window.</aside>
+      </article>
+    </section>
+  </main>
+
+  <script src="../../stage-js/presenter.js"></script>
+  <script src="../../stage-js/controls.js"></script>
+  <script src="../../stage-js/media.js"></script>
+  <script src="../../stage-js/deck.js"></script>
+  <script src="../../stage-js/media-player.js"></script>
+  <script src="../../stage-js/media-viewer.js"></script>
+</body>
+</html>

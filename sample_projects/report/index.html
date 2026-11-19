@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A short support staffing review with a synchronized queue replay and live forecast.">
+  <title>Support queue review · Stage.js</title>
+  <link rel="stylesheet" href="../../stage-js/deck.css">
+  <link rel="stylesheet" href="../../stage-js/media-player.css">
+  <link rel="stylesheet" href="../../stage-js/media-viewer.css">
+  <link rel="stylesheet" href="../../theme/report.css">
+  <link rel="stylesheet" href="../../stage-js/print.css" media="print">
+  <style>
+    .queue-slide {
+      --paper: #f4f6ef;
+      --ink: #152c26;
+      --muted: #425851;
+      --line: #becac0;
+      --accent: #006455;
+      --accent-soft: #e3efe7;
+      --carryover-track: #f2cbb9;
+      --carryover-ink: #8a331c;
+    }
+    .queue-slide.cover h1 { max-width: 72cqw; }
+    .queue-slide .lead { max-width: 60cqw; }
+    .queue-replay-layout { grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr); }
+    .queue-replay .stage-media-controls { margin-top: 0; }
+    .queue-chapters { display: flex; flex-wrap: wrap; gap: calc(var(--u) * .5); font-size: var(--t-xs); }
+    .queue-slide .queue-chapters button {
+      min-height: 36px;
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: calc(var(--u) * .35) calc(var(--u) * .65);
+    }
+    .queue-slide .queue-chapters button:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+    .queue-slide .queue-chapters button:focus-visible { outline-color: var(--accent); }
+    .queue-outcome { padding-left: calc(var(--u) * 1.2); border-left: 1px solid var(--line); }
+    .queue-outcome dl { display: grid; gap: calc(var(--u) * .65); margin-top: var(--u); }
+    .queue-outcome dt { color: var(--muted); font-size: var(--t-s); }
+    .queue-outcome dd { font-size: var(--t-num); font-weight: 700; line-height: 1.15; font-variant-numeric: tabular-nums; }
+    .queue-controls {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--u);
+      color: var(--ink);
+      font-size: var(--t-m);
+    }
+    .queue-controls label { display: grid; gap: calc(var(--u) * .3); font-weight: 600; }
+    .queue-controls select {
+      width: 100%;
+      min-height: 44px;
+      padding: calc(var(--u) * .45) calc(var(--u) * .75);
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+    }
+    .queue-controls select:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .queue-results { display: grid; gap: var(--u); }
+    .queue-results figcaption { color: var(--muted); }
+    .queue-counts, .queue-values { display: flex; justify-content: space-between; flex-wrap: wrap; gap: calc(var(--u) * .4) var(--u); }
+    .queue-values { font-weight: 600; font-variant-numeric: tabular-nums; }
+    .queue-values [data-carryover]:not([data-carryover="0"]) { color: var(--carryover-ink); }
+    .queue-track {
+      height: calc(var(--u) * 1.5);
+      min-height: 12px;
+      margin-top: calc(var(--u) * .4);
+      background: linear-gradient(to right, var(--accent) var(--closed-share), var(--carryover-track) var(--closed-share));
+    }
+    .queue-pilot { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: calc(var(--u) * 2.5); }
+    .queue-pilot h3 { margin-bottom: calc(var(--u) * .55); }
+    .queue-pilot .rtable { background: var(--surface); }
+    .queue-assumptions { color: var(--muted); font-size: var(--t-s); }
+    @media (max-width: 760px) {
+      body.mode-read .queue-slide.cover h1, body.mode-read .queue-slide .lead { max-width: none; }
+      body.mode-read .queue-controls, body.mode-read .queue-pilot { grid-template-columns: 1fr; }
+      body.mode-read .queue-counts { flex-direction: column; }
+      body.mode-read .queue-outcome dl { grid-template-columns: 1fr 1fr; }
+      body.mode-read .queue-slide .queue-chapters button { min-height: 44px; }
+    }
+  </style>
+</head>
+<body class="mode-present">
+  <a class="skip-link" href="#backlog">Skip to slides</a>
+  <main class="deck" id="deck" aria-label="Support queue review">
+    <section class="slide-frame" id="backlog" data-title="A busy day leaves 14 tickets overnight" data-section="Staffing review" data-source-slides="illustrative staffing scenario">
+      <article class="slide queue-slide cover">
+        <header class="slide-head"><span class="brand">Support staffing review</span></header>
+        <div class="slide-body">
+          <h1>A busy day leaves<br>14 tickets overnight</h1>
+          <p class="lead">With current staffing, we can close 46 of 60 incoming tickets by 5 pm.</p>
+        </div>
+        <footer class="slide-foot">Illustrative staffing scenario</footer>
+        <aside class="speaker-notes">We need to decide when to set aside extra time for the queue. Start with a busy day, when a fresh queue of 60 tickets would leave 14 open at closing. The numbers are illustrative.</aside>
+      </article>
+    </section>
+
+    <!-- The simulated queue starts empty. Hourly arrivals: 4, 5, 5, 6, 12, 13, 8, 7.
+         Completions under current staffing: 4, 5, 5, 6, 6, 7, 7, 6.
+         With coverage: the same until 3 pm, then 15 and 12. -->
+    <section class="slide-frame" id="replay" data-title="Two extra hours clear the busy-day queue" data-section="Staffing review" data-source-slides="illustrative matched queue replay">
+      <article class="slide queue-slide">
+        <div class="slide-title">
+          <h2>Two extra hours clear the busy-day queue</h2>
+          <p class="lead">Both replays use the same 60 arrivals. Extra coverage starts at 3 pm.</p>
+        </div>
+        <div class="slide-body center">
+          <div class="evidence-layout queue-replay-layout">
+            <div class="evidence-preview">
+              <div class="comparison queue-replay" id="queue-replay" data-media-player data-media-zoom="group" data-media-click-expand>
+                <figure class="media-card">
+                  <figcaption>Current staffing</figcaption>
+                  <div class="media-frame">
+                    <video muted playsinline preload="metadata" poster="replay/queue-current.jpg" aria-label="Simulated queue with current staffing, ending with 14 open tickets">
+                      <source src="replay/queue-current.mp4" type="video/mp4">
+                    </video>
+                    <img class="print-poster" src="replay/queue-current.jpg" alt="At 5 pm, 14 tickets remain open with current staffing">
+                  </div>
+                </figure>
+                <figure class="media-card">
+                  <figcaption>Two extra hours</figcaption>
+                  <div class="media-frame">
+                    <video muted playsinline preload="metadata" poster="replay/queue-covered.jpg" aria-label="Simulated queue with extra coverage from 3 pm to 5 pm, ending with all tickets closed">
+                      <source src="replay/queue-covered.mp4" type="video/mp4">
+                    </video>
+                    <img class="print-poster" src="replay/queue-covered.jpg" alt="At 5 pm, all tickets are closed with two extra hours of coverage">
+                  </div>
+                </figure>
+              </div>
+              <div class="queue-chapters presentation-ui" role="group" aria-label="Jump to a point in both replays">
+                <button type="button" data-replay-time="6" disabled>3 pm coverage starts</button>
+                <button type="button" data-replay-time="8" disabled>5 pm close</button>
+              </div>
+            </div>
+            <div class="queue-outcome">
+              <h3>At 5 pm</h3>
+              <dl>
+                <div><dt>Current staffing</dt><dd>14 open</dd></div>
+                <div><dt>Two extra hours</dt><dd>0 open</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <footer class="slide-foot">Simulated day. The replay holds at 5 pm.</footer>
+        <aside class="speaker-notes">Start at the 3 pm marker. Both queues have 12 open tickets when extra coverage begins. Play the two replays together or jump to closing so the audience can see how adding coverage late in the day changes carryover. The same hour-by-hour arrivals drive both simulations.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="coverage" data-title="Try adding two hours of coverage" data-section="Staffing review" data-source-slides="illustrative staffing scenario">
+      <article class="slide queue-slide">
+        <div class="slide-title">
+          <h2>What does extra coverage buy us?</h2>
+        </div>
+        <div class="slide-body center">
+          <form class="queue-controls presentation-ui" id="queue-controls">
+            <label>Expected demand
+              <select name="demand">
+                <option value="60">Busy day (60 tickets)</option>
+                <option value="44">Typical day (44 tickets)</option>
+              </select>
+            </label>
+            <label>Extra coverage
+              <select name="hours">
+                <option value="0">None</option>
+                <option value="1">1 hour</option>
+                <option value="2" selected>2 hours</option>
+              </select>
+            </label>
+          </form>
+          <figure class="queue-results" aria-live="polite" aria-atomic="true">
+            <figcaption id="queue-demand">Busy day (60 tickets)</figcaption>
+            <div data-queue-result style="--closed-share: 76.6667%">
+              <div class="queue-counts">
+                <h3>Current coverage</h3>
+                <p class="queue-values"><span data-closed>46 closed</span><span data-carryover="14">14 carry over</span></p>
+              </div>
+              <div class="queue-track" aria-hidden="true"></div>
+            </div>
+            <div data-queue-result style="--closed-share: 100%">
+              <div class="queue-counts">
+                <h3 id="queue-plan">With 2 extra hours</h3>
+                <p class="queue-values"><span data-closed>60 closed</span><span data-carryover="0">0 carry over</span></p>
+              </div>
+              <div class="queue-track" aria-hidden="true"></div>
+            </div>
+          </figure>
+          <p class="queue-assumptions">The model assumes 46 tickets at current staffing and 8 more per extra staff hour.</p>
+        </div>
+        <footer class="slide-foot">Carryover at 5 pm</footer>
+        <aside class="speaker-notes">On the busy day, two extra hours clear the queue. Choose one hour to show why it falls short by six tickets. Then switch to the typical day and show that regular coverage is enough. Each bar represents that day's incoming tickets.</aside>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="decision" data-title="Approve a one-week staffing pilot" data-section="Staffing review" data-source-slides="illustrative staffing scenario">
+      <article class="slide queue-slide">
+        <div class="slide-title"><h2>Approve a one-week staffing pilot</h2></div>
+        <div class="slide-body center">
+          <div class="queue-pilot">
+            <div>
+              <table class="rtable">
+                <thead><tr><th scope="col">Expected tickets</th><th scope="col">Extra coverage</th></tr></thead>
+                <tbody>
+                  <tr><td>46 or fewer</td><td>None</td></tr>
+                  <tr><td>47–54</td><td>1 hour</td></tr>
+                  <tr><td>55–62</td><td>2 hours</td></tr>
+                  <tr><td>63 or more</td><td>Escalate to the queue lead</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div>
+              <h3>Review the pilot Friday</h3>
+              <p>The queue lead will track tickets left at 5 pm and extra staff hours used each day.</p>
+            </div>
+          </div>
+        </div>
+        <aside class="speaker-notes">Ask for approval to protect up to two staff hours per day next week. Use the thresholds to decide how much time to protect. On Friday, compare the daily carryover with the extra time spent.</aside>
+      </article>
+    </section>
+  </main>
+  <script src="../../stage-js/presenter.js"></script>
+  <script src="../../stage-js/controls.js"></script>
+  <script src="../../stage-js/media.js"></script>
+  <script src="../../stage-js/deck.js"></script>
+  <script src="../../stage-js/media-player.js"></script>
+  <script src="../../stage-js/media-viewer.js"></script>
+  <script>
+    const replay = document.querySelector('#queue-replay');
+    const replayPlayer = StageComponents.mountMediaPlayer(replay);
+    const replayClips = [...replay.querySelectorAll('video')];
+    const replayChapters = [...document.querySelectorAll('[data-replay-time]')];
+
+    function updateReplayChapters() {
+      const ready = replayClips.every(clip => Number.isFinite(clip.duration) && !clip.error);
+      replayChapters.forEach(button => { button.disabled = !ready; });
+    }
+
+    replayClips.forEach(clip => {
+      clip.addEventListener('loadedmetadata', updateReplayChapters);
+      clip.addEventListener('error', updateReplayChapters);
+    });
+    replayChapters.forEach(button => button.addEventListener('click', () => {
+      replayPlayer.setPlaying(false);
+      replayPlayer.seek(Number(button.dataset.replayTime));
+    }));
+    updateReplayChapters();
+
+    const baselineCapacity = 46;
+    const extraHourlyCapacity = 8;
+    const coverage = document.querySelector('#queue-controls');
+    const [current, proposed] = document.querySelectorAll('[data-queue-result]');
+
+    function showCoverage(row, demand, capacity) {
+      const closed = Math.min(demand, capacity);
+      const carryover = row.querySelector('[data-carryover]');
+      row.querySelector('[data-closed]').textContent = `${closed} closed`;
+      carryover.dataset.carryover = demand - closed;
+      carryover.textContent = `${carryover.dataset.carryover} carry over`;
+      row.style.setProperty('--closed-share', `${closed / demand * 100}%`);
+    }
+
+    function updateQueue() {
+      const demand = Number(coverage.elements.demand.value);
+      const hours = Number(coverage.elements.hours.value);
+      document.querySelector('#queue-demand').textContent = coverage.elements.demand.selectedOptions[0].textContent;
+      document.querySelector('#queue-plan').textContent = `With ${hours} extra ${hours === 1 ? 'hour' : 'hours'}`;
+      showCoverage(current, demand, baselineCapacity);
+      showCoverage(proposed, demand, baselineCapacity + hours * extraHourlyCapacity);
+      coverage.dispatchEvent(new Event('stage:contentchange', { bubbles: true }));
+    }
+
+    coverage.addEventListener('change', updateQueue);
+    updateQueue();
+  </script>
+</body>
+</html>

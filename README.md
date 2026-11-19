@@ -28,6 +28,8 @@ python3 -m http.server 8000
 
 Visit [the basic deck](http://localhost:8000/sample_projects/basic/) or
 [the advanced deck](http://localhost:8000/sample_projects/advance/).
+The [multilingual sample](sample_projects/multilingual/index.html) adds in-place
+English/Chinese switching.
 Copy a sample folder inside `sample_projects/` and edit its `index.html` to start
 your own deck. Ask your coding agent to update the slide content and theme, then
 review the result in the browser.
@@ -39,12 +41,40 @@ to open the separate presenter window; share only the audience window.
 
 - A shared runtime with slide navigation, overview, appendices, and reading mode.
 - A separate presenter window with notes, current/next previews, and a timer.
+- Optional language switching within the same slides, with shared media and
+  independently authored speaker notes.
 - Shareable CSS themes, including light and dark slide layouts.
-- Local images and videos, optional enlargement, and playback coordination.
+- Local images and videos, optional shared transport, grouped enlargement,
+  comparable-example selection and playback coordination.
 - Browser printing and a PDF export helper.
+- A report theme and an agent skill for short meeting decks.
 
 The basic sample is a four-slide starter. The advanced sample adds light/dark
 layouts and appendices. Both use the same runtime and matching local media.
+
+## Evidence-led reports
+
+The [short meeting sample](sample_projects/report/index.html) uses four slides
+to make a staffing decision. In the [matched replay](sample_projects/report/index.html#replay),
+seek both timelines together to compare the same busy day under two staffing
+plans. Then change demand or coverage in the [live forecast](sample_projects/report/index.html#coverage)
+to see how many tickets would carry over. The figures are illustrative.
+
+The [short meeting deck skill](skills/stage-report/SKILL.md) turns your notes and
+evidence into a deck shaped around the audience, goal and speaking time. To
+scaffold a deck yourself, pick the slide types you need and run the script from
+the repository root.
+
+```bash
+python3 skills/stage-report/scripts/new-deck.py --list
+python3 skills/stage-report/scripts/new-deck.py --pages cover,evidence,asks ~/reports/update
+```
+
+To let a coding agent use the skill, symlink the folder into the agent's skills
+directory so it can still find the runtime, for example
+`ln -s "$PWD/skills/stage-report" ~/.claude/skills/stage-report`, then ask for
+"make a short deck for this week's meeting" and give it your notes. If you copy the folder
+instead, set `STAGE_JS_HOME` to this repository.
 
 ## Documentation
 

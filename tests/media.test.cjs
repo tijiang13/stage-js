@@ -17,7 +17,7 @@ function setup() {
   let observe;
   class IntersectionObserver { constructor(callback) { observe = callback; } observe() {} }
   const window = {};
-  vm.runInNewContext(readFileSync(`${__dirname}/../stage-js/media.js`, 'utf8'), { window, document, IntersectionObserver });
+  vm.runInNewContext(readFileSync(`${__dirname}/../stage-js/media.js`, 'utf8'), { window, document, IntersectionObserver, Event });
   const manager = window.StageComponents.createMedia({ querySelectorAll: () => [auto, manual] }, reduced);
   const visible = (item, ratio = 1) => observe([{ target: item, isIntersecting: ratio > 0, intersectionRatio: ratio }]);
   visible(auto); visible(manual); manager.activate(slides[0]);
@@ -69,4 +69,39 @@ test('visibility and reduced motion constrain automatic playback', () => {
   document.hidden = false; document.dispatchEvent(new Event('visibilitychange')); assert.equal(auto.paused, false);
   reduced.matches = true; reduced.dispatchEvent(new Event('change')); assert.equal(auto.paused, true);
   manager.suspend()(); assert.equal(auto.paused, true);
+});
+
+test('unavailable examples pause immediately and preserve their playback choice', () => {
+  const { auto, manager } = setup();
+  manager.setAvailable(auto, false);
+  assert.equal(auto.paused, true);
+  assert.equal(manager.getIntent(auto), true);
+  manager.suspend()();
+  assert.equal(auto.paused, true);
+  manager.setAvailable(auto, true);
+  assert.equal(auto.paused, false);
+});
+
+test('a hidden example cannot start until both availability and overlay holds allow it', () => {
+  const { auto, manager } = setup();
+  const release = manager.suspend();
+  manager.setAvailable(auto, false);
+  manager.setIntent(auto, true);
+  release();
+  assert.equal(auto.paused, true);
+  manager.setIntent(auto, false);
+  manager.setAvailable(auto, true);
+  assert.equal(auto.paused, true);
+});
+
+test('an explicit intent update is observable even when the source is already suspended', () => {
+  const { auto, manager } = setup();
+  const release = manager.suspend();
+  let updates = 0;
+  auto.addEventListener('stage:mediaintent', () => updates++);
+  manager.setIntent(auto, false);
+  assert.equal(updates, 1);
+  assert.equal(manager.getIntent(auto), false);
+  release();
+  assert.equal(auto.paused, true);
 });

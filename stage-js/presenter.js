@@ -1,6 +1,7 @@
 /* Shared by both sample decks; resolve styles relative to this script. */
 const presenterStylesheet = new URL("presenter.css", document.currentScript.src).href;
 window.createPresenter = ({ slides, getCurrent, goTo, step, getNext }) => {
+  const t = (key, fallback) => window.StageI18n?.t(key, fallback) ?? fallback;
   let popup;
   let interval;
   let resizeObserver;
@@ -13,20 +14,21 @@ window.createPresenter = ({ slides, getCurrent, goTo, step, getNext }) => {
     return `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
   };
   const preview = slide => {
-    const doc = document.implementation.createHTMLDocument('Slide preview');
+    const doc = document.implementation.createHTMLDocument(t('presenter.preview', 'Slide preview'));
+    doc.documentElement.lang = window.StageI18n?.getLanguage() || document.documentElement.lang;
     const base = doc.createElement('base');
     base.href = document.baseURI;
     doc.head.append(base);
     document.querySelectorAll('style, link[rel="stylesheet"]').forEach(style => doc.head.append(style.cloneNode(true)));
     const copy = slide.cloneNode(true);
     copy.setAttribute('aria-hidden', 'false');
-    copy.querySelectorAll('.speaker-notes, .stage-media-expand, script, iframe, object, embed').forEach(node => node.remove());
+    copy.querySelectorAll('.speaker-notes, .presentation-ui, script, iframe, object, embed').forEach(node => node.remove());
     copy.querySelectorAll('video, audio').forEach(media => {
       const poster = media.getAttribute('poster');
       if (poster) {
         const image = doc.createElement('img');
         image.src = poster;
-        image.alt = media.getAttribute('aria-label') || 'Video preview';
+        image.alt = media.getAttribute('aria-label') || t('presenter.videoPreview', 'Video preview');
         image.className = 'video-preview';
         media.replaceWith(image);
       } else media.remove();
@@ -43,14 +45,29 @@ window.createPresenter = ({ slides, getCurrent, goTo, step, getNext }) => {
       rendered = current;
       const next = getNext();
       doc.querySelector('#current').srcdoc = preview(current);
-      doc.querySelector('#next').srcdoc = next ? preview(next) : '<body style="background:#20211e;color:#aaa;font:48px system-ui;display:grid;place-items:center;height:95vh">End of presentation</body>';
+      if (next) doc.querySelector('#next').srcdoc = preview(next);
+      else {
+        const end = document.implementation.createHTMLDocument(t('presenter.end', 'End of presentation'));
+        end.documentElement.lang = window.StageI18n?.getLanguage() || document.documentElement.lang;
+        end.body.style.cssText = 'background:#20211e;color:#aaa;font:48px system-ui;display:grid;place-items:center;height:95vh';
+        end.body.textContent = t('presenter.end', 'End of presentation');
+        doc.querySelector('#next').srcdoc = '<!doctype html>' + end.documentElement.outerHTML;
+      }
       doc.querySelector('#title').textContent = current.dataset.title || current.id;
       doc.querySelector('#count').textContent = `${slides.indexOf(current) + 1} / ${slides.length}`;
-      doc.querySelector('#notes').textContent = current.querySelector('.speaker-notes')?.textContent.trim() || 'No speaker notes for this slide.';
+      doc.querySelector('#notes').textContent = current.querySelector('.speaker-notes')?.textContent.trim() || t('presenter.noNotes', 'No speaker notes for this slide.');
+      for (const [index, option] of [...doc.querySelector('#jump').options].entries()) {
+        const slide = slides[index];
+        option.textContent = `${index + 1}. ${slide.dataset.title || slide.id}${slide.hasAttribute('data-appendix') ? ' ' + t('presenter.appendix', '(Appendix)') : ''}`;
+      }
       doc.querySelector('#jump').value = current.id;
       doc.querySelector('#previous').disabled = slides.indexOf(current) === 0;
       doc.querySelector('#advance').disabled = !next;
     }
+    doc.documentElement.lang = window.StageI18n?.getLanguage() || document.documentElement.lang;
+    doc.title = `${t('presenter.title', 'Presenter')} · ${document.title}`;
+    const timer = doc.querySelector('#timer');
+    timer.textContent = started !== null ? t('presenter.pauseTimer', 'Pause timer') : elapsed ? t('presenter.resumeTimer', 'Resume timer') : t('presenter.startTimer', 'Start timer');
     doc.querySelector('#elapsed').textContent = format(clock());
     doc.querySelector('#wall-clock').textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
@@ -58,15 +75,16 @@ window.createPresenter = ({ slides, getCurrent, goTo, step, getNext }) => {
     if (popup && !popup.closed) { popup.focus(); return; }
     popup = window.open('', '_blank', 'popup,width=1280,height=850');
     if (!popup) {
-      window.alert('Allow pop-ups for this deck, then press P again.');
+      window.alert(t('presenter.allowPopup', 'Allow pop-ups for this deck, then press P again.'));
       return;
     }
     clearInterval(interval);
     resizeObserver?.disconnect();
     rendered = null;
     const doc = popup.document;
-    doc.write(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Presenter · ${document.title.replace(/[<>&"]/g, '')}</title></head><body><header><div><small>Presenter view</small><h1 id="title"></h1></div><div><span id="count"></span> · <time id="wall-clock"></time></div></header><main class="workspace"><section><div class="label">Audience · current slide</div><div class="preview"><iframe id="current" title="Current slide preview" sandbox="allow-same-origin" tabindex="-1"></iframe></div><nav><button id="previous">← Previous</button><label>Go to slide <select id="jump"></select></label><button id="advance">Next →</button></nav><div class="timer"><div><small>Elapsed time</small><div id="elapsed">00:00</div></div><button id="timer">Start timer</button><button id="reset">Reset</button></div></section><section><div class="label">Up next</div><div class="preview"><iframe id="next" title="Next slide preview" sandbox="allow-same-origin" tabindex="-1"></iframe></div><h2>Speaker notes</h2><div id="notes"></div></section></main><footer>Share only the audience window. Keep this window on your own display.<br>← → / Space to navigate · Home / End to jump · You can close and reopen this window with P.</footer></body></html>`);
+    doc.write(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Presenter · ${document.title.replace(/[<>&"]/g, '')}</title></head><body><header><div><small data-i18n="presenter.title">Presenter view</small><h1 id="title"></h1></div><div><span id="count"></span> · <time id="wall-clock"></time></div></header><main class="workspace"><section><div class="label" data-i18n="presenter.current">Audience · current slide</div><div class="preview"><iframe id="current" title="Current slide preview" data-i18n-attr="title:presenter.currentPreview" sandbox="allow-same-origin" tabindex="-1"></iframe></div><nav><button id="previous" data-i18n="presenter.previous">← Previous</button><label><span data-i18n="presenter.goTo">Go to slide</span> <select id="jump"></select></label><button id="advance" data-i18n="presenter.advance">Next →</button></nav><div class="timer"><div><small data-i18n="presenter.elapsed">Elapsed time</small><div id="elapsed">00:00</div></div><button id="timer">Start timer</button><button id="reset" data-i18n="presenter.reset">Reset</button></div></section><section><div class="label" data-i18n="presenter.next">Up next</div><div class="preview"><iframe id="next" title="Next slide preview" data-i18n-attr="title:presenter.nextPreview" sandbox="allow-same-origin" tabindex="-1"></iframe></div><h2 data-i18n="presenter.notes">Speaker notes</h2><div id="notes"></div></section></main><footer><span data-i18n="presenter.share">Share only the audience window. Keep this window on your own display.</span><br><span data-i18n="presenter.keys">← → / Space to navigate · Home / End to jump · You can close and reopen this window with P.</span></footer></body></html>`);
     doc.close();
+    window.StageI18n?.apply(doc);
     const stylesheet = doc.createElement("link");
     stylesheet.rel = "stylesheet";
     stylesheet.href = presenterStylesheet;
@@ -118,6 +136,11 @@ window.createPresenter = ({ slides, getCurrent, goTo, step, getNext }) => {
     }, 250);
     update();
   };
+  document.addEventListener('stage:contentchange', () => { rendered = null; update(); });
+  document.addEventListener('stage:languagechange', () => {
+    if (popup && !popup.closed) window.StageI18n?.apply(popup.document);
+    rendered = null; update();
+  });
   window.addEventListener('pagehide', () => {
     clearInterval(interval);
     resizeObserver?.disconnect();

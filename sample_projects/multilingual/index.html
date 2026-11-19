@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title data-i18n="document.title">Stage.js · Same-slide languages</title>
+  <link rel="stylesheet" href="../../stage-js/deck.css">
+  <link rel="stylesheet" href="../../stage-js/media-player.css">
+  <link rel="stylesheet" href="../../stage-js/media-viewer.css">
+  <link rel="stylesheet" href="../../theme/report.css">
+  <link rel="stylesheet" href="../../stage-js/print.css" media="print">
+</head>
+<body class="mode-present">
+  <main class="deck" id="deck">
+    <section class="slide-frame" id="recording" data-title="Change the language, keep the recording" data-section="Languages" data-source-slides="synthetic" data-i18n-attr="data-title:recording.title;data-section:recording.section">
+      <article class="slide">
+        <div class="slide-title"><h2 data-i18n="recording.title">Change the language, keep the recording</h2></div>
+        <div class="slide-body center">
+          <div class="evidence-layout">
+            <div data-media-player>
+              <figure class="media-card">
+                <figcaption data-i18n="recording.caption">One recording shared by both languages.</figcaption>
+                <div class="media-frame" data-media-zoom data-media-click-expand>
+                  <video muted loop playsinline data-autoplay preload="metadata" poster="assets/motion-study.jpg" aria-label="Local synthetic recording" data-i18n-attr="aria-label:recording.alt"><source src="assets/motion-study.mp4" type="video/mp4"></video>
+                  <img class="print-poster" src="assets/motion-study.jpg" alt="Local synthetic recording" data-i18n-attr="alt:recording.alt">
+                </div>
+              </figure>
+            </div>
+            <figure class="media-card natural">
+              <div class="media-frame" data-media-zoom><img src="assets/flow-en.svg" alt="Observation and action diagram" data-i18n-attr="src:asset.flow;alt:flow.alt"></div>
+            </figure>
+          </div>
+        </div>
+        <footer class="slide-foot"><span data-i18n="fixture.footer">Synthetic fixture · no model-quality claim</span><span>01 / 02</span></footer>
+        <aside class="speaker-notes" data-i18n="speaker.note">This note stays in the speaker's authored language.</aside>
+      </article>
+    </section>
+    <section class="slide-frame" id="summary" data-title="Fallback text stays readable" data-section="Fallback" data-source-slides="synthetic" data-i18n-attr="data-title:summary.title;data-section:summary.section">
+      <article class="slide">
+        <div class="slide-title"><h2 data-i18n="summary.title">Fallback text stays readable</h2></div>
+        <div class="slide-body center"><p data-i18n="untranslated.example">Untranslated labels use the authored default.</p></div>
+        <footer class="slide-foot"><span data-i18n="fixture.footer">Synthetic fixture · no model-quality claim</span><span>02 / 02</span></footer>
+        <aside class="speaker-notes">This second note also stays unchanged when the audience language switches.</aside>
+      </article>
+    </section>
+  </main>
+  <script type="application/json" data-stage-i18n>{
+  "default": "en",
+  "languages": {
+    "en": "EN",
+    "zh-CN": "中文"
+  },
+  "messages": {
+    "zh-CN": {
+      "document.title": "Stage.js · 同页多语言示例",
+      "recording.title": "切换语言，保留同一录像",
+      "recording.section": "多语言示例",
+      "recording.caption": "中英文共用同一段录像。",
+      "recording.alt": "本地合成录像示例",
+      "flow.alt": "观测与动作示意图",
+      "asset.flow": "assets/flow-zh.svg",
+      "summary.title": "未翻译内容保留原文",
+      "summary.section": "默认语言回退",
+      "speaker.note": "这段不应替换讲者原文。",
+      "fixture.footer": "合成示例 · 不代表模型质量"
+    }
+  }
+}</script>
+  <script src="../../stage-js/i18n.js"></script>
+  <script src="../../stage-js/presenter.js"></script>
+  <script src="../../stage-js/controls.js"></script>
+  <script src="../../stage-js/media.js"></script>
+  <script src="../../stage-js/deck.js"></script>
+  <script src="../../stage-js/media-player.js"></script>
+  <script src="../../stage-js/media-viewer.js"></script>
+</body>
+</html>

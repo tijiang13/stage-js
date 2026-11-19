@@ -1,5 +1,6 @@
 (() => {
   const body = document.body;
+  const t = (key, fallback) => window.StageI18n?.t(key, fallback) ?? fallback;
   const deck = document.querySelector('#deck');
   const slides = [...document.querySelectorAll('.slide-frame')];
   if (!deck || !slides.length) return;
@@ -69,7 +70,7 @@
     const isAppendix = appendixIndex >= 0;
     const progressValue = isAppendix ? 1 : (mainIndex + 1) / mainSlides.length;
 
-    sectionName.textContent = slide.dataset.section || 'Overview';
+    sectionName.textContent = slide.dataset.section || t('ui.overview', 'Overview');
     slideCount.textContent = isAppendix
       ? `A${appendixIndex + 1} / A${appendixSlides.length}`
       : `${twoDigits(mainIndex + 1)} / ${twoDigits(mainSlides.length)}`;
@@ -139,7 +140,7 @@
       button.type = 'button';
       button.className = 'overview-card';
       if (slide.hasAttribute('data-appendix')) button.classList.add('appendix');
-      for (const [tag, text] of [['span', slide.dataset.section || 'Slide'], ['strong', slide.dataset.title || slide.id], ['small', slideLabel(slide)]]) {
+      for (const [tag, text] of [['span', slide.dataset.section || t('ui.slide', 'Slide')], ['strong', slide.dataset.title || slide.id], ['small', slideLabel(slide)]]) {
         const label = document.createElement(tag);
         label.textContent = text;
         button.append(label);
@@ -188,8 +189,8 @@
     const read = mode === 'read';
     body.classList.toggle('mode-read', read);
     body.classList.toggle('mode-present', !read);
-    modeButton.textContent = read ? 'Present deck' : 'Read deck';
-    modeButton.title = read ? 'Presentation mode (R)' : 'Reading mode (R)';
+    modeButton.textContent = read ? t('ui.present', 'Present deck') : t('ui.read', 'Read deck');
+    modeButton.title = read ? t('ui.presentTitle', 'Presentation mode (R)') : t('ui.readTitle', 'Reading mode (R)');
 
     if (!options.initial) {
       requestAnimationFrame(() => goTo(slide));
@@ -199,7 +200,7 @@
 
   const updateFullscreen = () => {
     const active = Boolean(document.fullscreenElement);
-    const label = active ? 'Exit fullscreen' : 'Enter fullscreen';
+    const label = active ? t('ui.exitFullscreen', 'Exit fullscreen') : t('ui.enterFullscreen', 'Enter fullscreen');
     fullscreenButton.setAttribute('aria-pressed', String(active));
     fullscreenButton.setAttribute('aria-label', label);
     fullscreenButton.title = `${label} (F)`;
@@ -309,11 +310,21 @@
   });
 
   window.StageDeck = Object.freeze({
-    getState: () => ({ slide: current, mode: isReadMode() ? 'read' : 'present' }),
+    getState: () => ({ slide: current, mode: isReadMode() ? 'read' : 'present', language: window.StageI18n?.getLanguage() || document.documentElement.lang || 'en' }),
+    setLanguage: language => window.StageI18n?.setLanguage(language) ?? false,
     goTo: target => goTo(typeof target === 'string' ? slides.find(slide => slide.id === target) : target),
     step, media, acquireOverlay,
   });
   buildOverview();
+  document.addEventListener('stage:languagechange', () => {
+    document.querySelectorAll('.overview-card').forEach((card, index) => {
+      card.querySelector('span').textContent = slides[index].dataset.section || t('ui.slide', 'Slide');
+      card.querySelector('strong').textContent = slides[index].dataset.title || slides[index].id;
+    });
+    setMode(isReadMode() ? 'read' : 'present', { initial: true });
+    updateFullscreen();
+    updateUi(current);
+  });
 
   const params = new URLSearchParams(window.location.search);
   setMode(params.get('mode') === 'read' ? 'read' : 'present', { initial: true });

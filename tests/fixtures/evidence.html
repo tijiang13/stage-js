@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Synthetic evidence fixture</title>
+    <link rel="stylesheet" href="../../stage-js/deck.css">
+    <link rel="stylesheet" href="../../stage-js/media-player.css">
+    <link rel="stylesheet" href="../../stage-js/media-viewer.css">
+    <link rel="stylesheet" href="../../theme/report.css">
+    <link rel="stylesheet" href="../../stage-js/print.css" media="print">
+  </head>
+  <body class="mode-present">
+    <main class="deck" id="deck">
+      <section class="slide-frame" id="comparison" data-title="Keep baseline and result comparable" data-section="Evidence patterns" data-source-slides="sample">
+        <article class="slide">
+          <header class="slide-head">
+            <span class="brand">Evidence composition</span>
+            <span>Authoring example</span>
+          </header>
+          <div class="slide-title">
+            <h2>Keep baseline and result comparable</h2>
+          </div>
+          <div class="slide-body center">
+            <div class="evidence-preview compact" data-media-examples>
+              <p class="evidence-context">Synthetic fixture: both panes use identical media.</p>
+              <div class="media-example-picker presentation-ui" role="group" aria-label="Choose comparable example">
+                <button type="button" data-media-select="first" aria-pressed="true">
+                  <img src="../../sample_projects/basic/assets/motion-study.jpg" alt="">
+                  First example
+                </button>
+                <button type="button" data-media-select="second" aria-pressed="false">Second example</button>
+              </div>
+              <div data-media-example="first">
+                <div class="comparison" data-media-player data-media-zoom="group" data-media-click-expand>
+                  <figure class="media-card">
+                    <figcaption>Baseline · first</figcaption>
+                    <div class="media-frame">
+                      <video muted loop playsinline data-autoplay preload="metadata" poster="../../sample_projects/basic/assets/motion-study.jpg" aria-label="Synthetic motion-study playback fixture">
+                        <source src="../../sample_projects/basic/assets/motion-study.mp4" type="video/mp4">
+                      </video>
+                      <img class="print-poster" src="../../sample_projects/basic/assets/motion-study.jpg" alt="Synthetic motion-study poster">
+                    </div>
+                  </figure>
+                  <figure class="media-card">
+                    <figcaption>Result · first</figcaption>
+                    <div class="media-frame">
+                      <video muted loop playsinline data-autoplay preload="metadata" poster="../../sample_projects/basic/assets/motion-study.jpg" aria-label="Synthetic motion-study playback fixture">
+                        <source src="../../sample_projects/basic/assets/motion-study.mp4" type="video/mp4">
+                      </video>
+                      <img class="print-poster" src="../../sample_projects/basic/assets/motion-study.jpg" alt="Synthetic motion-study poster">
+                    </div>
+                  </figure>
+                </div>
+              </div>
+              <div data-media-example="second" hidden>
+                <div class="comparison" data-media-player data-media-zoom="group" data-media-click-expand>
+                  <figure class="media-card">
+                    <figcaption>Baseline · second</figcaption>
+                    <div class="media-frame">
+                      <video muted loop playsinline data-autoplay preload="metadata" poster="../../sample_projects/basic/assets/motion-study.jpg" aria-label="Synthetic motion-study playback fixture">
+                        <source src="../../sample_projects/basic/assets/motion-study.mp4" type="video/mp4">
+                      </video>
+                      <img class="print-poster" src="../../sample_projects/basic/assets/motion-study.jpg" alt="Synthetic motion-study poster">
+                    </div>
+                  </figure>
+                  <figure class="media-card">
+                    <figcaption>Result · second</figcaption>
+                    <div class="media-frame">
+                      <video muted loop playsinline data-autoplay preload="metadata" poster="../../sample_projects/basic/assets/motion-study.jpg" aria-label="Synthetic motion-study playback fixture">
+                        <source src="../../sample_projects/basic/assets/motion-study.mp4" type="video/mp4">
+                      </video>
+                      <img class="print-poster" src="../../sample_projects/basic/assets/motion-study.jpg" alt="Synthetic motion-study poster">
+                    </div>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="slide-foot">
+            <span>Synthetic fixtures demonstrate layout and controls</span>
+            <span>14</span>
+          </footer>
+          <aside class="speaker-notes">Select aligned inputs and intervals before sharing the transport. Keep baseline/result labels visible in the enlarged group; switching examples changes the take, not the meaning of the two panes. These identical synthetic clips demonstrate controls rather than measured improvement.</aside>
+        </article>
+      </section>
+      <section class="slide-frame" id="manual" data-title="Manual playback" data-section="Fixtures" data-source-slides="synthetic">
+        <article class="slide">
+          <div class="slide-title">
+            <h2>Manual playback stays explicit</h2>
+          </div>
+          <div class="slide-body center">
+            <div class="evidence-layout">
+              <div data-media-player>
+                <figure class="media-card">
+                  <figcaption>Manual recording</figcaption>
+                  <div class="media-frame" data-media-zoom data-media-click-expand>
+                    <video muted playsinline preload="metadata" poster="../../sample_projects/basic/assets/motion-study.jpg" aria-label="Manual synthetic fixture">
+                      <source src="../../sample_projects/basic/assets/motion-study.mp4" type="video/mp4">
+                    </video>
+                    <img class="print-poster" src="../../sample_projects/basic/assets/motion-study.jpg" alt="Manual fixture poster">
+                  </div>
+                </figure>
+              </div>
+              <figure class="media-card">
+                <div class="media-frame" data-media-zoom>
+                  <img src="../../sample_projects/basic/assets/motion-study.jpg" alt="Synthetic still fixture">
+                </div>
+              </figure>
+            </div>
+          </div>
+          <aside class="speaker-notes">A manual clip must not start automatically on returning to its slide. The adjacent still exercises single-image enlargement.</aside>
+        </article>
+      </section>
+      <section class="slide-frame" id="plain" data-title="Existing native controls" data-section="Fixtures" data-source-slides="synthetic">
+        <article class="slide">
+          <div class="slide-title">
+            <h2>Unmarked media keeps native controls</h2>
+          </div>
+          <div class="slide-body center">
+            <div class="evidence-layout">
+              <figure class="media-card">
+                <figcaption>Manual recording</figcaption>
+                <div class="media-frame" >
+                  <video controls muted playsinline preload="metadata" poster="../../sample_projects/basic/assets/motion-study.jpg" aria-label="Manual synthetic fixture">
+                    <source src="../../sample_projects/basic/assets/motion-study.mp4" type="video/mp4">
+                  </video>
+                  <img class="print-poster" src="../../sample_projects/basic/assets/motion-study.jpg" alt="Manual fixture poster">
+                </div>
+              </figure>
+            </div>
+          </div>
+          <aside class="speaker-notes">The optional components should not attach transport or enlargement to unmarked media.</aside>
+        </article>
+      </section>
+    </main>
+    <script src="../../stage-js/presenter.js"></script>
+    <script src="../../stage-js/controls.js"></script>
+    <script src="../../stage-js/media.js"></script>
+    <script src="../../stage-js/deck.js"></script>
+    <script src="../../stage-js/media-player.js"></script>
+    <script src="../../stage-js/media-viewer.js"></script>
+  </body>
+</html>

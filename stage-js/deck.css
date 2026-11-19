@@ -55,3 +55,8 @@ body.mode-read .deck-controls { opacity: 1; }
 .overview-control, .fullscreen-control { display: inline-flex; align-items: center; justify-content: center; }
 .fullscreen-control .fullscreen-exit, .fullscreen-control[aria-pressed="true"] .fullscreen-enter { display: none; }
 .fullscreen-control[aria-pressed="true"] .fullscreen-exit { display: block; }
+
+/* Language selection is opt-in through the translation component. */
+.stage-language { min-height: 40px; max-width: 110px; padding: 6px; color: var(--stage-ui-ink, #eee); background: var(--stage-ui-bg, #222); border: 1px solid var(--stage-ui-line, #555); font: inherit; }
+.stage-language:focus-visible { outline: 2px solid var(--stage-accent, #aaa); outline-offset: 2px; }
+@media (pointer: coarse) { .stage-language { min-height: 44px; } }

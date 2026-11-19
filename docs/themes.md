@@ -28,6 +28,15 @@ theme for per-slide appearance. These names are theme conventions, not runtime
 modes. Theme-specific responsive content rules may override the default reading
 layout; keep fixed presentation dimensions and print rules intact.
 
-Both bundled themes import `theme/interface.css` for consistent controls. Include
+`theme/report.css` is a third theme for business reports: status chips, KPI tiles,
+tables, timelines, bars and ask lists, with `.dark` for the cover. It also provides
+composable comparisons, compact previews with diagrams, UI journeys, visible
+findings and recording/result layouts. These classes express evidence
+relationships; they do not prescribe equal columns or a fixed report agenda.
+Its sizes and colors are tokens on `.slide` (`--accent`, `--t-*`, `--u`), so a deck
+can rebrand it with a few overrides. The [report page types](../sample_projects/report/page-types.html)
+demonstrate the layout markup.
+
+All bundled themes import `theme/interface.css` for consistent controls. Include
 that file when sharing a theme. Fonts use local system fallbacks, so there is no
 external font service to load.

@@ -1,0 +1,8 @@
+/* Optional media geometry; themes provide palette and typography. */
+[data-media-example][hidden] { display: none !important; }
+.stage-media-controls { display: flex; align-items: center; flex-wrap: wrap; gap: .5em; margin-top: .65em; color: inherit; font-size: 14px; }
+.stage-media-controls input { flex: 1; min-width: 60px; accent-color: var(--stage-accent, #777); }
+.stage-media-controls output { min-width: 7.5em; text-align: right; font-variant-numeric: tabular-nums; }
+.stage-media-controls select { color: inherit; background: transparent; border: 1px solid var(--stage-ui-line, #777); padding: .4em; }
+.stage-media-controls select:focus-visible,.stage-media-controls input:focus-visible { outline: 2px solid var(--stage-accent, #aaa); outline-offset: 2px; }
+[data-media-click-expand] video { cursor: zoom-in; }
